@@ -1,0 +1,28 @@
+name: 'TMFS Scan'
+
+on:
+  workflow_dispatch:
+
+env:
+  DIR: files
+  
+
+jobs:
+  container-scan:
+      name: TMFS Scan
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: TMFS Scan
+        run: |
+          cd install && chmod +x tmfs_install.sh && ./tmfs_install.sh
+          export TMFS_API_KEY=${{ secrets.TMFS_API_KEY }}
+          tmas scan dir:${{ env.DIR }} -a > result.json
+          cat result.json
+      - name: 'Upload Scan Result Artifact'
+        uses: actions/upload-artifact@v3
+        with:
+          name: scan-result
+          path: tmas/result.json
+          retention-days: 30
