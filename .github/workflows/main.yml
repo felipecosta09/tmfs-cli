@@ -16,8 +16,8 @@ jobs:
         uses: actions/checkout@v4
       - name: TMFS Scan
         run: |
-          ls
           cd install
+          ls
           chmod +x tmfs_install.sh
           ./tmfs_install.sh
           export TMFS_API_KEY=${{ secrets.TMFS_API_KEY }}
