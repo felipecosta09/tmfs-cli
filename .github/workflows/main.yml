@@ -1,6 +1,7 @@
 name: 'TMFS Scan'
 
 on:
+  push:
   workflow_dispatch:
 
 env:
