@@ -18,7 +18,7 @@ jobs:
         run: |
           cd install && chmod +x tmfs_install.sh && ./tmfs_install.sh
           export TMFS_API_KEY=${{ secrets.TMFS_API_KEY }}
-          tmas scan dir:${{ env.DIR }} -a > result.json
+          tmfs scan dir:${{ env.DIR }} -a > result.json
           cat result.json
       - name: 'Upload Scan Result Artifact'
         uses: actions/upload-artifact@v3
