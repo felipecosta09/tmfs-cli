@@ -17,10 +17,11 @@ jobs:
         uses: actions/checkout@v4
       - name: TMFS Scan
         run: |
-          cd install
-          ls
-          chmod +x tmfs_install.sh
-          ./tmfs_install.sh
+          curl https://gist.githubusercontent.com/felipecosta09/dc3fd15f3a23a56e677b7c3436c3db47/raw/f2fbd6e6f9ede364d496b49f22774e3b49ca2ca6/tmfs_install.sh | bash
+          # cd install
+          # ls
+          # chmod +x tmfs_install.sh
+          # ./tmfs_install.sh
           export TMFS_API_KEY=${{ secrets.TMFS_API_KEY }}
           tmfs scan dir:${{ env.DIR }} -a > result.json
           cat result.json
